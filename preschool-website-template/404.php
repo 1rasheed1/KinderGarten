@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
+    <link rel="icon" type="image/png" href="../images/Logo.png">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,12 @@
 
     <!--   Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+    .selected-row {
+        background-color: #ff8b53; 
+    }
+</style>
+
 </head>
 
 <body>
@@ -63,12 +69,12 @@
                             <a href="call-to-action.html" class="dropdown-item">Become A Teachers</a>
                             <a href="appointment.html" class="dropdown-item">Make Appointment</a>
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item active">Admin Page</a>
+                            <a href="404.php" class="dropdown-item active">Admin Page</a>
                         </div>
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                 </div>
-                <a href="" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Join Us<i class="fa fa-arrow-right ms-3"></i></a>
+                <a href="../HTML/Login.php" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Log out<i class="fa fa-arrow-right ms-3"></i></a>
             </div>
         </nav>
         <!-- Navbar End -->
@@ -90,21 +96,22 @@
         <!-- Page Header End -->
 
 
-        <!-- 404 Start -->
-        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="container text-center">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <i class="bi bi-exclamation-triangle display-1 text-primary"></i>
-                        <h1 class="display-1">404</h1>
-                        <h1 class="mb-4">Page Not Found</h1>
-                        <p class="mb-4">We’re sorry, the page you have looked for does not exist in our website! Maybe go to our home page or try to use a search?</p>
-                        <a class="btn btn-primary rounded-pill py-3 px-5" href="">Go Back To Home</a>
+    <!-- Page admin Start -->
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <?php include '../pageAdminHandle.php';?>
+                    <div class="my-3">
+                        <button class="btn btn-danger me-3" onclick="deleteSelected()">Delete</button>
+                        <button class="btn btn-success">Add</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- 404 End -->
+    </div>
+    <!-- Page admin End -->
+
 
 
         <!-- Footer Start -->
@@ -156,11 +163,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h3 class="text-white mb-4">Newsletter</h3>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                        </div>
+                        <p>We will close on Monday.</p>
                     </div>
                 </div>
             </div>
@@ -200,6 +203,45 @@
 
     <!--   Javascript -->
     <script src="js/main.js"></script>
+    <script>
+    // Function to handle row selection
+    function selectRow(row) {
+        // Deselect all other rows
+        var table = document.getElementById("teacherTable");
+        var rows = table.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+            rows[i].classList.remove("selected-row");
+        }
+
+        // Select the clicked row
+        row.classList.add("selected-row");  
+    }
+
+    // Function to handle row deletion
+    function deleteSelected() {
+    var selectedRow = document.querySelector(".selected-row");
+    if (selectedRow) {
+        var email = selectedRow.cells[4].textContent.trim(); // Assuming the email is in the fifth column
+        $.ajax({
+            url: '../deleteRow.php',
+            type: 'POST',
+            data: {email: email},
+            success: function(response) {
+                // Handle success response
+                console.log(response);
+                selectedRow.remove();
+            },
+            error: function(xhr, status, error) {
+                // Handle error response
+                console.error(xhr.responseText);
+            }
+        });
+    } else {
+        alert("Please select a row to delete.");
+    }
+}
+</script>
+
 </body>
 
 </html>
