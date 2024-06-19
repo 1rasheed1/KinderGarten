@@ -14,7 +14,14 @@ if (isset($_POST['loginMail']) && isset($_POST['loginPassword'])) {
         for ($i = 0; $i < $res->num_rows; $i++) {
             $row = $res->fetch_object();
             if ($row->uMail == $uMail && $row->uPassword == $uPass) {
-                header('Location: preschool-website-template/index.html');
+                $_SESSION['userEmail'] = $uMail; // Save user email
+                $_SESSION['userName'] = $row->uName; // Save user name
+                if ($row->uType == 1) {
+                    $_SESSION['isAdmin'] = true;
+                } else {
+                    $_SESSION['isAdmin'] = false;
+                }
+                header('Location: SiteFolder/index.php');
                 exit;
             }
         }

@@ -14,7 +14,7 @@ if (isset($_POST['signupMail']) && isset($_POST['signupPass']) && isset($_POST['
         $stmt->execute();
         
         if ($stmt->affected_rows > 0) {
-            header('Location: preschool-website-template/index.html');
+            header('Location: SiteFolder/index.php');
             exit;
         } else {
             echo "<script>alert('Failed to register user!');</script>";

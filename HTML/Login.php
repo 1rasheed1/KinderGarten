@@ -66,6 +66,7 @@
                 echo "alert('Username / password are not correct !!');";
                 unset($_SESSION['loginError']); // Unset the session variable to avoid showing the alert again
             }
+            
             ?>
         </script>
     </section>

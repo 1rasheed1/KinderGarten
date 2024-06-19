@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
+    <link rel="icon" type="image/png" href="../images/Logo.png">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
-            <a href="index.html" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                 <h1 class="m-0 text-primary"><i class="fa fa-book-reader me-3"></i>LittleLearners</h1>
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -52,22 +52,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="about.html" class="nav-item nav-link active">About Us</a>
-                    <a href="classes.html" class="nav-item nav-link">Classes</a>
+                    <a href="index.php" class="nav-item nav-link active">Home</a>
+                    <a href="about.php" class="nav-item nav-link">About Us</a>
+                    <a href="classes.php" class="nav-item nav-link">Classes</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                            <a href="facility.html" class="dropdown-item">School Facilities</a>
-                            <a href="team.html" class="dropdown-item">Popular Teachers</a>
-                            <a href="call-to-action.html" class="dropdown-item">Become A Teachers</a>
-                            <a href="appointment.html" class="dropdown-item">Make Appointment</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.php" class="dropdown-item">Admin Page</a>
+                            <a href="facility.php" class="dropdown-item">School Facilities</a>
+                            <a href="team.php" class="dropdown-item">Popular Teachers</a>
+                            <a href="call-to-action.php" class="dropdown-item">Become A Teachers</a>
+                            <a href="appointment.php" class="dropdown-item">Make Appointment</a>
+                            <a href="testimonial.php" class="dropdown-item">Testimonial</a>
+                            <?php
+                            session_start();
+                            // Check if isAdmin session variable is set and true
+                            if ($_SESSION['isAdmin']==true) {
+                                echo '<a href="404.php" class="dropdown-item">Admin Page</a>';
+                            }
+                            ?>
                         </div>
+                        
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="contact.php" class="nav-item nav-link">Contact Us</a>
+                    
                 </div>
+                <a href="#" class="nav-item nav-link"><?php  echo $_SESSION['userEmail']; ?></a>
                 <a href="../HTML/Login.php" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Log out<i class="fa fa-arrow-right ms-3"></i></a>
             </div>
         </nav>
@@ -77,59 +86,17 @@
         <!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
-                <h1 class="display-2 text-white animated slideInDown mb-4">About Us</h1>
+                <h1 class="display-2 text-white animated slideInDown mb-4">Become A Teachers</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">About Us</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Become A Teachers</li>
                     </ol>
                 </nav>
             </div>
         </div>
         <!-- Page Header End -->
-
-
-        <!-- About Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <h1 class="mb-4">Learn More About Our Work And Our Cultural Activities</h1>
-                        <p>Explore the dynamic synergy between our work and cultural activities. At our organization, we're not just about the job – we're about fostering a vibrant community where creativity thrives. From art exhibitions to music concerts, our cultural activities enrich our lives and inspire us to reach new heights. Join us in celebrating diversity, collaboration, and personal growth. Learn more about our work and immerse yourself in our vibrant cultural scene.</p>
-                        
-                        <div class="row g-4 align-items-center">
-                            <div class="col-sm-6">
-                                <a class="btn btn-primary rounded-pill py-3 px-5" href="">Read More</a>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 45px; height: 45px;">
-                                    <div class="ms-3">
-                                        <h6 class="text-primary mb-1">Rasheed Hendawi</h6>
-                                        <small>CEO & Founder</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 about-img wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <img class="img-fluid w-75 rounded-circle bg-light p-3" src="img/about-1.jpg" alt="">
-                            </div>
-                            <div class="col-6 text-start" style="margin-top: -150px;">
-                                <img class="img-fluid w-100 rounded-circle bg-light p-3" src="img/about-2.jpg" alt="">
-                            </div>
-                            <div class="col-6 text-end" style="margin-top: -150px;">
-                                <img class="img-fluid w-100 rounded-circle bg-light p-3" src="img/about-3.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- About End -->
 
 
         <!-- Call To Action Start -->
@@ -153,62 +120,6 @@
             </div>
         </div>
         <!-- Call To Action End -->
-
-
-        <!-- Team Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Popular Teachers</h1>
-                    <p>Here is the school's staff, which devotes all its efforts to serving your children and bringing them to mental and physical safety..</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item position-relative">
-                            <img class="img-fluid rounded-circle w-75" src="img/team-1.jpg" alt="">
-                            <div class="team-text">
-                                <h3>Mariea Moa</h3>
-                                <p>Art teacher</p>
-                                <div class="d-flex align-items-center">
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item position-relative">
-                            <img class="img-fluid rounded-circle w-75" src="img/team-2.jpg" alt="">
-                            <div class="team-text">
-                                <h3>Jorjena Asd</h3>
-                                <p>Music Teacher</p>
-                                <div class="d-flex align-items-center">
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item position-relative">
-                            <img class="img-fluid rounded-circle w-75" src="img/team-3.jpg" alt="">
-                            <div class="team-text">
-                                <h3>Sami Abd</h3>
-                                <p>Electronic Teacher</p>
-                                <div class="d-flex align-items-center">
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
 
 
         <!-- Footer Start -->
@@ -260,7 +171,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h3 class="text-white mb-4">Newsletter</h3>
-                        <p>We will close on Monday.</p>
+                        <p>We will Close on Monday dont come.</p>
                     </div>
                 </div>
             </div>
@@ -269,7 +180,7 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">LittleLearners</a>, All Right Reserved. 
-							
+
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">

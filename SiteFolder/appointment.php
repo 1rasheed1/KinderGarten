@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>LittleLearners - Preschool Website</title>
+    <title>LittleLearners - Preschool Website  </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -29,12 +29,6 @@
 
     <!--   Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-    .selected-row {
-        background-color: #ff8b53; 
-    }
-</style>
-
 </head>
 
 <body>
@@ -50,7 +44,7 @@
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
-            <a href="index.html" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                 <h1 class="m-0 text-primary"><i class="fa fa-book-reader me-3"></i>LittleLearners</h1>
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -58,22 +52,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About Us</a>
-                    <a href="classes.html" class="nav-item nav-link">Classes</a>
+                    <a href="index.php" class="nav-item nav-link active">Home</a>
+                    <a href="about.php" class="nav-item nav-link">About Us</a>
+                    <a href="classes.php" class="nav-item nav-link">Classes</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu rounded-0 rounded-bottom border-0 m-0">
-                            <a href="facility.html" class="dropdown-item">School Facilities</a>
-                            <a href="team.html" class="dropdown-item">Popular Teachers</a>
-                            <a href="call-to-action.html" class="dropdown-item">Become A Teachers</a>
-                            <a href="appointment.html" class="dropdown-item">Make Appointment</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.php" class="dropdown-item active">Admin Page</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
+                            <a href="facility.php" class="dropdown-item">School Facilities</a>
+                            <a href="team.php" class="dropdown-item">Popular Teachers</a>
+                            <a href="call-to-action.php" class="dropdown-item">Become A Teachers</a>
+                            <a href="appointment.php" class="dropdown-item">Make Appointment</a>
+                            <a href="testimonial.php" class="dropdown-item">Testimonial</a>
+                            <?php
+                            session_start();
+                            // Check if isAdmin session variable is set and true
+                            if ($_SESSION['isAdmin']==true) {
+                                echo '<a href="404.php" class="dropdown-item">Admin Page</a>';
+                            }
+                            ?>
                         </div>
+                        
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="contact.php" class="nav-item nav-link">Contact Us</a>
+                    
                 </div>
+                <a href="#" class="nav-item nav-link"><?php  echo $_SESSION['userEmail']; ?></a>
                 <a href="../HTML/Login.php" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Log out<i class="fa fa-arrow-right ms-3"></i></a>
             </div>
         </nav>
@@ -83,12 +86,12 @@
         <!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
-                <h1 class="display-2 text-white animated slideInDown mb-4">Admin Page</h1>
+                <h1 class="display-2 text-white animated slideInDown mb-4">Appointment</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Admin Page</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Appointment</li>
                     </ol>
                 </nav>
             </div>
@@ -96,22 +99,63 @@
         <!-- Page Header End -->
 
 
-    <!-- Page admin Start -->
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <?php include '../pageAdminHandle.php';?>
-                    <div class="my-3">
-                        <button class="btn btn-danger me-3" onclick="deleteSelected()">Delete</button>
-                        <button class="btn btn-success">Add</button>
+        <!-- Appointment Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="bg-light rounded">
+                    <div class="row g-0">
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="h-100 d-flex flex-column justify-content-center p-5">
+                                <h1 class="mb-4">Make Appointment</h1>
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control border-0" id="gname" placeholder="Gurdian Name">
+                                                <label for="gname">Gurdian Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="email" class="form-control border-0" id="gmail" placeholder="Gurdian Email">
+                                                <label for="gmail">Gurdian Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control border-0" id="cname" placeholder="Child Name">
+                                                <label for="cname">Child Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control border-0" id="cage" placeholder="Child Age">
+                                                <label for="cage">Child Age</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-floating">
+                                                <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                                <label for="message">Message</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
+                            <div class="position-relative h-100">
+                                <img class="position-absolute w-100 h-100 rounded" src="img/appointment.jpg" style="object-fit: cover;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Page admin End -->
-
+        <!-- Appointment End -->
 
 
         <!-- Footer Start -->
@@ -163,7 +207,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h3 class="text-white mb-4">Newsletter</h3>
-                        <p>We will close on Monday.</p>
+                        <p>We will Close on Monday dont come.</p>
                     </div>
                 </div>
             </div>
@@ -203,45 +247,6 @@
 
     <!--   Javascript -->
     <script src="js/main.js"></script>
-    <script>
-    // Function to handle row selection
-    function selectRow(row) {
-        // Deselect all other rows
-        var table = document.getElementById("teacherTable");
-        var rows = table.getElementsByTagName("tr");
-        for (var i = 0; i < rows.length; i++) {
-            rows[i].classList.remove("selected-row");
-        }
-
-        // Select the clicked row
-        row.classList.add("selected-row");  
-    }
-
-    // Function to handle row deletion
-    function deleteSelected() {
-    var selectedRow = document.querySelector(".selected-row");
-    if (selectedRow) {
-        var email = selectedRow.cells[4].textContent.trim(); // Assuming the email is in the fifth column
-        $.ajax({
-            url: '../deleteRow.php',
-            type: 'POST',
-            data: {email: email},
-            success: function(response) {
-                // Handle success response
-                console.log(response);
-                selectedRow.remove();
-            },
-            error: function(xhr, status, error) {
-                // Handle error response
-                console.error(xhr.responseText);
-            }
-        });
-    } else {
-        alert("Please select a row to delete.");
-    }
-}
-</script>
-
 </body>
 
 </html>

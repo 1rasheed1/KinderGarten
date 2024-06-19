@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
+    <link rel="icon" type="image/png" href="../images/Logo.png">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
-            <a href="index.html" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                 <h1 class="m-0 text-primary"><i class="fa fa-book-reader me-3"></i>LittleLearners</h1>
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -52,22 +52,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About Us</a>
-                    <a href="classes.html" class="nav-item nav-link">Classes</a>
+                    <a href="index.php" class="nav-item nav-link active">Home</a>
+                    <a href="about.php" class="nav-item nav-link">About Us</a>
+                    <a href="classes.php" class="nav-item nav-link">Classes</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                            <a href="facility.html" class="dropdown-item">School Facilities</a>
-                            <a href="team.html" class="dropdown-item">Popular Teachers</a>
-                            <a href="call-to-action.html" class="dropdown-item active">Become A Teachers</a>
-                            <a href="appointment.html" class="dropdown-item">Make Appointment</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.php" class="dropdown-item">Admin Page</a>
+                            <a href="facility.php" class="dropdown-item">School Facilities</a>
+                            <a href="team.php" class="dropdown-item">Popular Teachers</a>
+                            <a href="call-to-action.php" class="dropdown-item">Become A Teachers</a>
+                            <a href="appointment.php" class="dropdown-item">Make Appointment</a>
+                            <a href="testimonial.php" class="dropdown-item">Testimonial</a>
+                            <?php
+                            session_start();
+                            // Check if isAdmin session variable is set and true
+                            if ($_SESSION['isAdmin']==true) {
+                                echo '<a href="404.php" class="dropdown-item">Admin Page</a>';
+                            }
+                            ?>
                         </div>
+                        
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="contact.php" class="nav-item nav-link">Contact Us</a>
+                    
                 </div>
+                <a href="#" class="nav-item nav-link"><?php  echo $_SESSION['userEmail']; ?></a>
                 <a href="../HTML/Login.php" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Log out<i class="fa fa-arrow-right ms-3"></i></a>
             </div>
         </nav>
@@ -77,12 +86,12 @@
         <!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
-                <h1 class="display-2 text-white animated slideInDown mb-4">Become A Teachers</h1>
+                <h1 class="display-2 text-white animated slideInDown mb-4">Teachers</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Become A Teachers</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Teachers</li>
                     </ol>
                 </nav>
             </div>
@@ -90,27 +99,60 @@
         <!-- Page Header End -->
 
 
-        <!-- Call To Action Start -->
+        <!-- Team Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="bg-light rounded">
-                    <div class="row g-0">
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="min-height: 400px;">
-                            <div class="position-relative h-100">
-                                <img class="position-absolute w-100 h-100 rounded" src="img/call-to-action.jpg" style="object-fit: cover;">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Popular Teachers</h1>
+                    <p><b>Here is the school's staff, which devotes all its efforts to serving your children and bringing them to mental and physical safety.<b></p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item position-relative">
+                            <img class="img-fluid rounded-circle w-75" src="img/team-1.jpg" alt="">
+                            <div class="team-text">
+                                <h3>Mariea Moa</h3>
+                                <p>Art teacher</p>
+                                <div class="d-flex align-items-center">
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="h-100 d-flex flex-column justify-content-center p-5">
-                                <h1 class="mb-4">Become A Teacher</h1>
-                                <p class="mb-4">Just visit our location and be preaperd for the interview so well so we can see if u can meet our requerment or not :)</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item position-relative">
+                            <img class="img-fluid rounded-circle w-75" src="img/team-2.jpg" alt="">
+                            <div class="team-text">
+                                <h3>Jorjena Asd</h3>
+                                <p>Music Teacher</p>
+                                <div class="d-flex align-items-center">
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="team-item position-relative">
+                            <img class="img-fluid rounded-circle w-75" src="img/team-3.jpg" alt="">
+                            <div class="team-text">
+                                <h3>Sami Abd</h3>
+                                <p>Electronic Teacher</p>
+                                <div class="d-flex align-items-center">
+                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Call To Action End -->
+        <!-- Team End -->
 
 
         <!-- Footer Start -->
@@ -171,7 +213,6 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">LittleLearners</a>, All Right Reserved. 
-
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">

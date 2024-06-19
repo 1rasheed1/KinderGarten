@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
+    <link rel="icon" type="image/png" href="../images/Logo.png">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
-            <a href="index.html" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                 <h1 class="m-0 text-primary"><i class="fa fa-book-reader me-3"></i>LittleLearners</h1>
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -52,22 +52,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About Us</a>
-                    <a href="classes.html" class="nav-item nav-link">Classes</a>
+                    <a href="index.php" class="nav-item nav-link active">Home</a>
+                    <a href="about.php" class="nav-item nav-link">About Us</a>
+                    <a href="classes.php" class="nav-item nav-link">Classes</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                            <a href="facility.html" class="dropdown-item">School Facilities</a>
-                            <a href="team.html" class="dropdown-item active">Popular Teachers</a>
-                            <a href="call-to-action.html" class="dropdown-item">Become A Teachers</a>
-                            <a href="appointment.html" class="dropdown-item">Make Appointment</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.php" class="dropdown-item">Admin Page</a>
+                            <a href="facility.php" class="dropdown-item">School Facilities</a>
+                            <a href="team.php" class="dropdown-item">Popular Teachers</a>
+                            <a href="call-to-action.php" class="dropdown-item">Become A Teachers</a>
+                            <a href="appointment.php" class="dropdown-item">Make Appointment</a>
+                            <a href="testimonial.php" class="dropdown-item">Testimonial</a>
+                            <?php
+                            session_start();
+                            // Check if isAdmin session variable is set and true
+                            if ($_SESSION['isAdmin']==true) {
+                                echo '<a href="404.php" class="dropdown-item">Admin Page</a>';
+                            }
+                            ?>
                         </div>
+                        
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="contact.php" class="nav-item nav-link">Contact Us</a>
+                    
                 </div>
+                <a href="#" class="nav-item nav-link"><?php  echo $_SESSION['userEmail']; ?></a>
                 <a href="../HTML/Login.php" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Log out<i class="fa fa-arrow-right ms-3"></i></a>
             </div>
         </nav>
@@ -77,12 +86,12 @@
         <!-- Page Header End -->
         <div class="container-xxl py-5 page-header position-relative mb-5">
             <div class="container py-5">
-                <h1 class="display-2 text-white animated slideInDown mb-4">Teachers</h1>
+                <h1 class="display-2 text-white animated slideInDown mb-4">Testimonial</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Teachers</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Testimonial</li>
                     </ol>
                 </nav>
             </div>
@@ -90,60 +99,51 @@
         <!-- Page Header End -->
 
 
-        <!-- Team Start -->
+        <!-- Testimonial Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Popular Teachers</h1>
-                    <p><b>Here is the school's staff, which devotes all its efforts to serving your children and bringing them to mental and physical safety.<b></p>
+                    <h1 class="mb-3">Our Clients Say!</h1>
+                    <p>This is an overview of our dear participants who left their beautiful mark in our kindergarten for our Little learners.</p>
                 </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item position-relative">
-                            <img class="img-fluid rounded-circle w-75" src="img/team-1.jpg" alt="">
-                            <div class="team-text">
-                                <h3>Mariea Moa</h3>
-                                <p>Art teacher</p>
-                                <div class="d-flex align-items-center">
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="testimonial-item bg-light rounded p-5">
+                        <p class="fs-5">I must say that they are very honest in keeping our childreen safe and far away from dangours.</p>
+                        <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" style="width: 90px; height: 90px;">
+                            <div class="ps-3">
+                                <h3 class="mb-1">Sally Hamed</h3>
+                                <span>Engineer</span>
                             </div>
+                            <i class="fa fa-quote-right fa-3x text-primary ms-auto d-none d-sm-flex" style="padding-right: 20px;"></i>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item position-relative">
-                            <img class="img-fluid rounded-circle w-75" src="img/team-2.jpg" alt="">
-                            <div class="team-text">
-                                <h3>Jorjena Asd</h3>
-                                <p>Music Teacher</p>
-                                <div class="d-flex align-items-center">
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
+                    <div class="testimonial-item bg-light rounded p-5">
+                        <p class="fs-5">I put my child only for two month and I'm really seeing alot of differences on his way of thinking.</p>
+                        <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg" style="width: 90px; height: 90px;">
+                            <div class="ps-3">
+                                <h3 class="mb-1">Ahmad Abrahm</h3>
+                                <span>Doctor</span>
                             </div>
+                            <i class="fa fa-quote-right fa-3x text-primary ms-auto d-none d-sm-flex" style="padding-right: 20px;"></i>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item position-relative">
-                            <img class="img-fluid rounded-circle w-75" src="img/team-3.jpg" alt="">
-                            <div class="team-text">
-                                <h3>Sami Abd</h3>
-                                <p>Electronic Teacher</p>
-                                <div class="d-flex align-items-center">
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
+                    <div class="testimonial-item bg-light rounded p-5">
+                        <p class="fs-5">They have a really good teachers and well-desinged Kindergarten</p>
+                        <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg" style="width: 90px; height: 90px;">
+                            <div class="ps-3">
+                                <h3 class="mb-1">Sufia Masoud</h3>
+                                <span>Pilot</span>
                             </div>
+                            <i class="fa fa-quote-right fa-3x text-primary ms-auto d-none d-sm-flex" style="padding-right: 20px;"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Team End -->
+        <!-- Testimonial End -->
 
 
         <!-- Footer Start -->
@@ -195,7 +195,8 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h3 class="text-white mb-4">Newsletter</h3>
-                        <p>We will Close on Monday dont come.</p>
+                        <p>We will close on Monday.</p>
+
                     </div>
                 </div>
             </div>
@@ -204,6 +205,8 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">LittleLearners</a>, All Right Reserved. 
+							
+
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">

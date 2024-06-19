@@ -28,13 +28,14 @@ if ($result->num_rows > 0) {
             </thead>
             <tbody>";
     while($row = $result->fetch_assoc()) {
-        echo "<tr onclick='selectRow(this)'>
-                <td style='padding: 10px;'>" . htmlspecialchars($row["Tname"]) . "</td>
-                <td style='padding: 10px;'>" . htmlspecialchars($row["Twork"]) . "</td>
-                <td style='padding: 10px;'>" . htmlspecialchars($row["Tage"]) . "</td>
-                <td style='padding: 10px;'>" . htmlspecialchars($row["Tsalary"]) . "</td>
-                <td style='padding: 10px;'>" . htmlspecialchars($row["Temail"]) . "</td>
-              </tr>";
+        echo "<tr onclick=\"selectRow('teacherTable', this)\">
+        <td style='padding: 10px;'>" . htmlspecialchars($row["Tname"]) . "</td>
+        <td style='padding: 10px;'>" . htmlspecialchars($row["Twork"]) . "</td>
+        <td style='padding: 10px;'>" . htmlspecialchars($row["Tage"]) . "</td>
+        <td style='padding: 10px;'>" . htmlspecialchars($row["Tsalary"]) . "</td>
+        <td style='padding: 10px;'>" . htmlspecialchars($row["Temail"]) . "</td>
+      </tr>";
+
     }
     echo "</tbody>
         </table>
