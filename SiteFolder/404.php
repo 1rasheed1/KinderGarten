@@ -166,10 +166,10 @@
                                     <input type="number" class="form-control" id="age1" placeholder="Age" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="number" class="form-control" id="class1" placeholder="Class" required autocomplete="off">
+                                    <input type="text" class="form-control" id="class1" placeholder="Class" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="phone1" placeholder="Phone" required autocomplete="off"> 
+                                    <input type="text" ass="form-control" id="phone1" placeholder="Phone" required autocomplete="off"> 
                                 </div>
                                 <button type="button" class="btn btn-primary" onclick="addStudent()">Save</button>
                             </form>
