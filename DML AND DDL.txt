@@ -1,0 +1,97 @@
+CREATE TABLE Users (
+    Email VARCHAR(255) PRIMARY KEY,
+    Name VARCHAR(255),
+    Type VARCHAR(50),
+    Password VARCHAR(255)
+);
+
+CREATE TABLE Teachers (
+    Email VARCHAR(255) PRIMARY KEY,
+    TName VARCHAR(255),
+    Class VARCHAR(50),
+    Age INT,
+    Salary DECIMAL(10, 2),
+    Father VARCHAR(255),
+    FOREIGN KEY (Email) REFERENCES Users(Email)
+);
+
+CREATE TABLE Class (
+    classID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Time TIME,
+    Capacity INT,
+    Coast DECIMAL(10, 2)
+);
+
+CREATE TABLE Student (
+    Phone VARCHAR(20) PRIMARY KEY,
+    Name VARCHAR(255),
+    age INT,
+    Father VARCHAR(255),
+    Class VARCHAR(50),
+    FOREIGN KEY (Class) REFERENCES Class(Name)
+);
+
+
+INSERT INTO Users (Email, Name, Type, Password) VALUES
+('rasheed@gmail.com', 'rasheed', 1, 'password123'),
+('r123@example.com', 'ahmad', 2, 'password456');
+
+INSERT INTO Teachers (Email, TName, Class, Age, Salary, Father) VALUES
+('mhoadm123@example.com', 'rehan', 'Math', 40, 5000, 'Jafar');
+
+
+INSERT INTO Class (classID, Name, Time, Capacity, Coast) VALUES
+(1, 'Math', '12-9 PM', 30, 100),
+(2, 'Physics', '1-4 PM', 25, 120);
+
+
+INSERT INTO Student (Phone, Name, age, Father, Class) VALUES
+('0599251822', 'ahmad', 20, 'jafar', 'Math'),
+('0593851223', 'rasheed', 22, 'jafar', 'Physics');
+
+
+SELECT * FROM Users;
+
+SELECT * FROM Teachers WHERE Email = anything for example;
+
+SELECT * FROM Class;
+
+SELECT * FROM Student WHERE Class = 'CompEng';
+
+
+UPDATE Users
+SET Password = 'rasheed789'
+WHERE Email = 'rasheed.hendawi@gmail.com';
+
+
+UPDATE Teachers
+SET Salary = 60000
+WHERE Email = 'r123@gmail.com';
+
+
+UPDATE Class
+SET Capacity = 45
+WHERE classID = 3;
+
+
+UPDATE Student
+SET Phone = '0599251622'
+WHERE Name = 'Rasheed Hendawi';
+
+
+DELETE FROM Users
+WHERE Email = 'rasheed.hendawi@example.com';
+
+DELETE FROM Teachers
+WHERE Email = 'r123@gmail.com';
+
+DELETE FROM Class
+WHERE classID = 3;
+
+
+DELETE FROM Student
+WHERE Phone = '059928122';
+
+
+this is all an examples of some DDL and DML lines in the project which injected in a separate .php file extension.
